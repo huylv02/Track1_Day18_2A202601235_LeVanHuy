@@ -9,7 +9,7 @@
 
 ## 4. Group Feedback Synthesis — sau khi có đủ ba bản
 
-| Nội dung | Feedback 1 (Nguyễn Châu Thanh) | Feedback 2 (Hoàng Văn Thành - TA) | Feedback 3 (Lê Ngọc Khánh) | Pattern hoặc khác biệt |
+| Nội dung | Feedback 1 (Nguyễn Châu Thanh) | Feedback 2 (Hoàng Văn Thành) | Feedback 3 (Lê Ngọc Khánh) | Pattern hoặc khác biệt |
 |---|---|---|---|---|
 | First action | Chỉnh sửa prompt để đầu ra trả về định dạng JSON của Sentiment Classifier (thử với Option A). | Quan sát Radar tự động phát hiện học viên gặp khó khăn và tự mở cửa sổ chat kết nối. | Trải nghiệm Option A trước, cảm thấy như có người đứng sau lưng giám sát khi làm bài. | Cả 3 đều tiếp cận từ Option A trước tiên — nhưng cả 3 đều có phản ứng không thoải mái ngay từ bước đầu này. |
 | Breakdown chính | Liên tục gặp lỗi khi sửa prompt; đến lần thử thứ 4 thì pop-up kết nối TA bất ngờ xuất hiện. Có đọc cảnh báo gạch chân cam ở Option C. | Không tự thao tác gặp lỗi (đứng vai người hỗ trợ); theo dõi cách học viên bấm "Áp dụng" ở Option C mà không qua bước giải thích. | Hơi áp lực với Option A nên muốn tự giải quyết trước; đọc và làm theo gợi ý sửa lỗi cú pháp JSON của Option C. | Điểm nghẽn chung nằm ở Option A (bất ngờ/áp lực khi bị "giám sát" hoặc bị kết nối đột ngột); Option C được cả người mới lẫn TA ghi nhận là dễ đọc/dễ làm theo. |

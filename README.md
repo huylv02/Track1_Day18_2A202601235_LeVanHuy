@@ -1,5 +1,3 @@
-# Track1_Day18_2A202601235_LeVanHuy
-
 ## 1. Thông tin nhóm
 - **Case:** Case C — AI Support Radar
 - **Thành viên:**
@@ -32,7 +30,7 @@
 
 ### 4.3. Nguyễn Minh Hoàng (2A202601609) — Testing & Tổng hợp Feedback
 - Tiến hành kiểm thử trực tiếp với 3 tester ngoài dự án, ghi nhận chi tiết phản hồi về trải nghiệm người dùng.
-- Tổng hợp dữ liệu, rút ra pattern chung và đề xuất Next Change (Chi tiết trong `prototype/prototype-feedback-note.md`).
+- Tổng hợp dữ liệu, rút ra pattern chung và đề xuất Next Change (Chi tiết trong `prototype-feedback-note.md`).
 
 ## 5. Prototype Feedback
 - **Observations:** 

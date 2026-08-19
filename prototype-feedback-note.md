@@ -1,15 +1,14 @@
 # Prototype Feedback Note
 
-**Người điều phối (Facilitator):** Lê Văn Huy  
 **Dự án:** Case C — AI Support Radar  
 **Ngày thực hiện:** 18/08/2026  
 
 ---
 
-## 1. Danh sách Tester tham gia thử nghiệm
-- **Tester 1:** Nguyễn Anh Tuấn (Học viên khóa học Generative AI - Lớp K20)
-- **Tester 2:** Phạm Minh Đức (Trợ giảng đứng lớp - 2 năm kinh nghiệm phòng Lab)
-- **Tester 3:** Trần Thị Mai (Học viên mới tiếp cận lập trình & prompt engineering)
+## 1. Danh sách Thành viên nhóm hoàn thành Prototype Feedback Note
+- **Thành viên 1:** Nguyễn Châu Thanh - 2A202601382
+- **Thành viên 2:** Hoàng Văn Thành - 2A202601428
+- **Thành viên 3:** Lê Ngọc Khánh - 2A202601487
 
 ---
 
