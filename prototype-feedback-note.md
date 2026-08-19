@@ -15,32 +15,41 @@
 
 ## 2. Ghi chép chi tiết phản hồi (Feedback Logs)
 
-### Tester 1: Nguyễn Châu Thanh - 2A202601382
-* **Option A (AI Support Radar):** 
-  - *Hành vi:* Đang cố gắng chỉnh sửa prompt để đầu ra trả về định dạng JSON của Sentiment Classifier nhưng liên tục gặp lỗi. Chạy thử đến lần thứ 4 thì có pop-up kết nối của Trợ giảng xuất hiện.
-  - *Nhận xét:* "Lúc đầu hơi bất ngờ vì tự dưng có cửa sổ chat hiện lên hỏi han. Câu trả lời khá khó, lọ mọ mãi không xong. Đồng ý kết nối thì anh TA hướng dẫn chỉnh sửa prompt rất nhanh."
-* **Option B (SOS Button):** 
-  - *Hành vi:* Bấm nút SOS ngay khi thấy bài khó không làm được.
-  - *Nhận xét:* Nút này cảm giác an tâm, mình có thể chủ động nhờ TA. Đặc biệt khi ghi chú là ẩn danh, mình không sợ bị giáo viên hay các bạn khác nhìn thấy rồi bảo là dốt. Sẵn sàng sử dụng thường xuyên. Tuy nhiên khi bấm gửi yêu cầu cho trợ giang thì lại ở màn hình chờ không thoát được ra để làm tiếp, phải chờ họ hoặc huỷ, làm gãy mạch làm việc.
-* **Option C (AI In-line Debugger):**
-  - *Hành vi:* Khi chạy thử, nhìn thấy cảnh báo gạch chân màu cam dưới khung soạn thảo prompt, rê chuột vào thấy hướng dẫn sửa. Click "Áp dụng".
-  - *Nhận xét:* Tuyệt vời! Rất nhanh gọn. Tự động giải quyết vấn đề ngay mà không cần đợi bất kỳ ai hỗ trợ. Tuy nhiên chưa có giải thích cụ thể, dễ gây lạm dụng, không tự suy nghĩ để trả lời bài toán, đưa lời giaỉ cho luôn ngay từ lần đầu làm sai.
+### Tester/context: Nguyễn Châu Thanh - 2A202601382
 
-### Tester 2: Hoàng Văn Thành - 2A202601428
-* **Option A (AI Support Radar):**
-  - *Hành vi:* Quan sát Radar tự động phát hiện học viên đang gặp khó khăn với Sentiment Classifier và tự mở cửa sổ chat kết nối mà không hỏi ý kiến trước.
-  - *Nhận xét:* Đây là phương án kém nhất trong 3 phương án, thích hợp cho những người cố chấp.
-* **Option B (SOS Button):**
-  - *Hành vi:* Bấm nút SOS để yêu cầu hỗ trợ, chờ phản hồi và trực tiếp hướng dẫn học viên xử lý lỗi.
-  - *Nhận xét:* Phương án tốt nhất, có thể giúp học viên nhanh nhất và dễ hiểu nhất do nhận được sự hỗ trợ trực tiếp của trợ giảng.
-* **Option C (AI In-line Debugger):**
-  - *Hành vi:* Thử tính năng gạch chân cảnh báo lỗi và bấm "Áp dụng" để xem AI tự sửa lỗi ngay, không qua bước giải thích hay kiểm tra lại kiến thức.
-  - *Nhận xét:* Nên bổ sung thêm các quiz câu hỏi để giúp người dùng có thể nhớ lại kiến thức thay vì đưa ra kết quả luôn.
+| Observation | Note |
+|---|---|
+| First action | Chỉnh sửa prompt để đầu ra trả về định dạng JSON của Sentiment Classifier (thử với Option A). |
+| Chỗ dừng, do dự hoặc hiểu sai | Liên tục gặp lỗi khi sửa prompt; đến lần thử thứ 4 thì pop-up kết nối của Trợ giảng bất ngờ xuất hiện, khiến tester khựng lại. |
+| Evidence được đọc hay bỏ qua | Có đọc cảnh báo gạch chân màu cam dưới khung soạn thảo prompt (Option C), rê chuột vào để xem hướng dẫn sửa. |
+| Cách tester sửa hoặc lấy lại control | Đồng ý kết nối với TA qua pop-up và được hướng dẫn chỉnh sửa prompt rất nhanh (Option A); ở Option C, bấm "Áp dụng" để AI tự sửa lỗi ngay. |
+| Option được chọn | B |
+| Lý do và trade-off | Option B cho cảm giác an tâm, chủ động nhờ TA, ẩn danh nên không sợ bị đánh giá — sẵn sàng dùng thường xuyên. Đánh đổi: khi gửi yêu cầu thì bị kẹt ở màn hình chờ, không thoát ra làm tiếp được, phải chờ hoặc huỷ, làm gãy mạch làm việc. |
+| Evidence chống lại kỳ vọng của nhóm | Option A (kỳ vọng chủ động phát hiện sớm) lại gây bất ngờ/khó chịu vì tự mở cửa sổ chat mà không hỏi ý kiến trước; Option C tuy nhanh nhưng đưa lời giải ngay từ lần đầu, không có giải thích cụ thể — trái với kỳ vọng giúp học viên tự học. |
 
-### Tester 3: Lê Ngọc Khánh - 2A202601487
-* **Nhận xét tổng thể:**  
-  - Với người mới như em, Option C (AI In-line Debugger) là ok nhất vì hầu hết các lỗi em gặp chỉ là viết sai tên thuộc tính JSON hoặc thiếu dấu ngoặc. Tuy nhiên, nếu gặp lỗi thiết kế logic prompt (ví dụ: prompt bị bias), em rất cần Option B để gọi anh TA cứu trợ.
-  - Option A em cảm thấy hơi áp lực một chút, giống như có người đang đứng sau lưng giám sát mình làm bài vậy. Em thích tự giải quyết trước hơn.
+### Tester/context: Hoàng Văn Thành - 2A202601428
+
+| Observation | Note |
+|---|---|
+| First action | Quan sát Radar tự động phát hiện học viên gặp khó khăn với Sentiment Classifier và tự mở cửa sổ chat kết nối. |
+| Chỗ dừng, do dự hoặc hiểu sai | Không có; TA quan sát và đánh giá từng option dưới góc độ người hỗ trợ thay vì tự thao tác gặp lỗi. |
+| Evidence được đọc hay bỏ qua | Theo dõi cảnh báo gạch chân của Option C và cách học viên bấm "Áp dụng" mà không qua bước giải thích hay kiểm tra lại kiến thức. |
+| Cách tester sửa hoặc lấy lại control | Nhận yêu cầu SOS gửi đến, chờ phản hồi và trực tiếp hướng dẫn học viên xử lý lỗi (Option B). |
+| Option được chọn | B |
+| Lý do và trade-off | Option B giúp học viên nhanh và dễ hiểu nhất nhờ được hỗ trợ trực tiếp từ TA. Đánh đổi: Option A bị đánh giá kém nhất, chỉ phù hợp với người cố chấp; Option C cần bổ sung quiz để học viên nhớ lại kiến thức thay vì nhận kết quả ngay. |
+| Evidence chống lại kỳ vọng của nhóm | Từ góc nhìn TA, Option A — vốn được kỳ vọng là giải pháp chủ động — lại là phương án kém nhất; Option C tuy nhanh nhưng thiếu cơ chế củng cố kiến thức, trái với kỳ vọng hỗ trợ học tập lâu dài của nhóm. |
+
+### Tester/context: Lê Ngọc Khánh - 2A202601487 
+
+| Observation | Note |
+|---|---|
+| First action | Trải nghiệm Option A trước, cảm thấy như có người đứng sau lưng giám sát khi làm bài. |
+| Chỗ dừng, do dự hoặc hiểu sai | Hơi áp lực với Option A nên muốn tự giải quyết trước khi nhờ hỗ trợ. |
+| Evidence được đọc hay bỏ qua | Đọc và làm theo gợi ý sửa lỗi của Option C cho các lỗi cú pháp JSON (sai tên thuộc tính, thiếu dấu ngoặc). |
+| Cách tester sửa hoặc lấy lại control | Dùng Option C để tự sửa lỗi cú pháp đơn giản; hình dung sẽ gọi Option B khi gặp lỗi logic prompt phức tạp hơn (ví dụ prompt bị bias). |
+| Option được chọn | C |
+| Lý do và trade-off | Option C là ok nhất vì xử lý nhanh phần lớn lỗi cú pháp/định dạng mà người mới hay gặp. Đánh đổi: với lỗi thiết kế logic prompt (bias), Option C không đủ, vẫn cần Option B để được TA cứu trợ. |
+| Evidence chống lại kỳ vọng của nhóm | Option A, dù được kỳ vọng giúp phát hiện sớm và hỗ trợ chủ động, lại tạo cảm giác bị giám sát và gây áp lực cho người mới — ngược với kỳ vọng tạo môi trường an toàn để học. |
 
 ---
 

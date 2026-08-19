@@ -7,14 +7,18 @@
 | 2 | "Nhìn vào màn hình của hệ thống hỗ trợ cũ, tôi chỉ biết học viên đang online chứ không biết bạn nào thực sự cần giúp đỡ trừ khi họ chat hỏi. Radar AI giúp gom danh sách học viên kẹt lỗi liên tục rất hữu ích." (Tester 2 - Trợ giảng) | Đội ngũ hỗ trợ (TA) rất thiếu thông tin về trạng thái học tập thực tế (engagement/struggle level) của học viên nếu học viên im lặng, dẫn đến sự can thiệp quá muộn. |
 | 3 | "Tôi rất thích tính năng gợi ý sửa lỗi prompt tại chỗ. Nó phân tích ngay lỗi cấu trúc JSON của tôi và chỉ ra dòng thiếu ngoặc hoặc thiếu system instructions. Sửa phát được luôn." (Tester 3 - Học viên) | AI In-line Debugger (Option C) hoạt động cực tốt cho các lỗi cú pháp hoặc cấu trúc rõ ràng, giải phóng được rất nhiều thời gian chờ đợi phản hồi từ con người. |
 
-## 2. Synthesis (Sau khi test 3 người)
-- **Pattern hoặc khác biệt chính:** 
-  - Học viên cực kỳ ủng hộ việc giải quyết lỗi bằng AI trước tiên (Option C) vì tính tức thời và tự chủ.
-  - Nút SOS (Option B) tạo sự an tâm và bảo mật thông tin khi gặp những lỗi logic lớn, giảm thiểu áp lực tâm lý sợ bị đánh giá năng lực.
-  - AI Radar (Option A) rất đắc lực cho Trợ giảng nhưng cần được bọc trong một lớp giao diện xin phép tinh tế để tránh làm phiền học viên khi họ đang tập trung suy nghĩ.
-- **Một Next Change nhóm chốt:** 
-  - Xây dựng một luồng hỗ trợ đa tầng (3-tier) hợp nhất: Trình gỡ lỗi tự động bằng AI (In-line Debugger) hỗ trợ sửa nhanh -> AI Radar kích hoạt khi thử sai quá 3 lần để đưa ra gợi ý kết nối với Trợ giảng -> Nút SOS ẩn danh luôn thường trực để học viên chủ động yêu cầu trợ giúp trực tiếp bất kỳ lúc nào.
-- **Evidence dẫn tới quyết định:** 
-  - 100% học viên tham gia thử nghiệm cảm thấy "giật mình" hoặc "bị áp lực" nếu Trợ giảng đột ngột nhảy vào chat chia sẻ màn hình mà không báo trước hoặc khi họ chỉ vừa mới bị kẹt 1-2 phút. Do đó, cần có bước xác nhận từ phía học viên trước khi kết nối trực tiếp.
-- **Still Unproven:** 
-  - Khả năng xử lý thời gian thực của thuật toán phát hiện bế tắc khi quy mô lớp học tăng từ 3 người lên 300 người online đồng thời.
+## 4. Group Feedback Synthesis — sau khi có đủ ba bản
+
+| Nội dung | Feedback 1 (Nguyễn Châu Thanh) | Feedback 2 (Hoàng Văn Thành - TA) | Feedback 3 (Lê Ngọc Khánh) | Pattern hoặc khác biệt |
+|---|---|---|---|---|
+| First action | Chỉnh sửa prompt để đầu ra trả về định dạng JSON của Sentiment Classifier (thử với Option A). | Quan sát Radar tự động phát hiện học viên gặp khó khăn và tự mở cửa sổ chat kết nối. | Trải nghiệm Option A trước, cảm thấy như có người đứng sau lưng giám sát khi làm bài. | Cả 3 đều tiếp cận từ Option A trước tiên — nhưng cả 3 đều có phản ứng không thoải mái ngay từ bước đầu này. |
+| Breakdown chính | Liên tục gặp lỗi khi sửa prompt; đến lần thử thứ 4 thì pop-up kết nối TA bất ngờ xuất hiện. Có đọc cảnh báo gạch chân cam ở Option C. | Không tự thao tác gặp lỗi (đứng vai người hỗ trợ); theo dõi cách học viên bấm "Áp dụng" ở Option C mà không qua bước giải thích. | Hơi áp lực với Option A nên muốn tự giải quyết trước; đọc và làm theo gợi ý sửa lỗi cú pháp JSON của Option C. | Điểm nghẽn chung nằm ở Option A (bất ngờ/áp lực khi bị "giám sát" hoặc bị kết nối đột ngột); Option C được cả người mới lẫn TA ghi nhận là dễ đọc/dễ làm theo. |
+| Cách lấy lại control | Đồng ý kết nối TA (Option A) và được hướng dẫn sửa prompt rất nhanh; ở Option C bấm "Áp dụng" để AI tự sửa lỗi ngay. | Nhận yêu cầu SOS gửi đến, chờ phản hồi và trực tiếp hướng dẫn học viên xử lý lỗi (Option B). | Dùng Option C để tự sửa lỗi cú pháp đơn giản; hình dung sẽ gọi Option B khi gặp lỗi logic prompt phức tạp hơn (bias). | Học viên có xu hướng tự sửa bằng AI (Option C) trước, chỉ tìm đến người thật (Option B) khi lỗi vượt quá khả năng tự giải quyết. |
+| Option được chọn | B | B | C | 2/3 chọn Option B (ưu tiên hỗ trợ người thật, ẩn danh); Tester mới nhất chọn Option C cho các lỗi cú pháp đơn giản — cho thấy lựa chọn phụ thuộc vào loại lỗi và trình độ người dùng. |
+| Trade-off | An tâm, ẩn danh, sẵn sàng dùng thường xuyên — nhưng bị kẹt ở màn hình chờ, không thoát ra làm tiếp được, gãy mạch làm việc. | Nhanh và dễ hiểu nhất nhờ hỗ trợ trực tiếp — nhưng Option A bị đánh giá kém nhất, Option C cần bổ sung quiz để củng cố kiến thức. | Xử lý nhanh phần lớn lỗi cú pháp/định dạng — nhưng không đủ cho lỗi logic/bias, vẫn phải cần đến Option B. | Trade-off lặp lại xuyên suốt: tốc độ/tự chủ (Option C) đổi lấy chiều sâu học tập; hỗ trợ người thật (Option B) đổi lấy thời gian chờ và làm gãy luồng làm việc. |
+
+**Một Next Change nhóm chốt:** Xây dựng luồng hỗ trợ đa tầng: (1) AI In-line Debugger (Option C) xử lý trước các lỗi cú pháp/định dạng đơn giản, có bổ sung gợi ý dạng quiz thay vì đưa đáp án ngay; (2) AI Radar (Option A) chỉ chủ động đề xuất kết nối (không tự mở chat) sau khi phát hiện học viên bế tắc kéo dài, để học viên chọn "Chấp nhận" hoặc "Tự giải quyết tiếp"; (3) Nút SOS ẩn danh (Option B) luôn thường trực, đồng thời sửa lỗi chặn luồng làm việc khi đang chờ TA phản hồi.
+
+**Evidence nào dẫn tới quyết định này:** Cả 3 tester đều phản ứng tiêu cực khi Option A tự động mở cửa sổ chat mà không xin phép trước (bất ngờ, áp lực, cảm giác bị giám sát); 2/3 tester (học viên và TA) xác nhận Option B là điểm tựa tâm lý mạnh nhất nhờ tính ẩn danh và hỗ trợ trực tiếp, dù có lỗi UX màn hình chờ; Option C được cả người mới lẫn TA ghi nhận là xử lý nhanh lỗi cú pháp nhưng thiếu cơ chế củng cố kiến thức.
+
+**Still Unproven sau ba feedback:** Khả năng xử lý thời gian thực của AI Radar khi quy mô lớp học tăng lên hàng trăm học viên online đồng thời; hiệu quả thực tế của cơ chế "xin phép tinh tế" cho Option A khi triển khai; liệu việc bổ sung quiz vào Option C có làm chậm tốc độ xử lý lỗi hay ảnh hưởng đến trải nghiệm "nhanh gọn" mà học viên đang thích.
