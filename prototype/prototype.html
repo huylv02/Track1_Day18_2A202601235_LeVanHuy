@@ -16,6 +16,44 @@
             <button class="switcher-btn active" data-opt="A" onclick="switchOption('A')">Phương án A: AI Support Radar</button>
             <button class="switcher-btn" data-opt="B" onclick="switchOption('B')">Phương án B: SOS Button</button>
             <button class="switcher-btn" data-opt="C" onclick="switchOption('C')">Phương án C: AI In-line Debugger</button>
+            <button class="btn btn-secondary" style="margin-left: 0.5rem;" onclick="openUseCaseModal()">📋 Use Cases</button>
+        </div>
+    </div>
+
+    <!-- Use Case Shortcut Modal -->
+    <div class="overlay" id="usecase-modal">
+        <div class="modal-card" style="width: 620px; max-height: 80vh; overflow-y: auto;">
+            <div class="modal-header">
+                <span>📋 Nhảy thẳng đến kịch bản (Use Cases)</span>
+            </div>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0;">
+                Chọn 1 use case để chuyển thẳng đến đúng trạng thái đó, không cần tự thao tác lại từ đầu.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                <strong style="color: var(--accent-color); font-size: 0.9rem;">🛡️ Phương án A — AI Support Radar</strong>
+                <button class="btn btn-secondary" style="justify-content: flex-start;" onclick="jumpToUseCase('A', 1)">1. Học viên mới bắt đầu, đang gặp lỗi JSON Parsing</button>
+                <button class="btn btn-secondary" style="justify-content: flex-start;" onclick="jumpToUseCase('A', 2)">2. AI Radar tự động phát hiện & đề xuất kết nối Trợ giảng</button>
+                <button class="btn btn-secondary" style="justify-content: flex-start;" onclick="jumpToUseCase('A', 3)">3. Trợ giảng đang coaching trực tiếp (gợi mở tư duy)</button>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                <strong style="color: var(--accent-color); font-size: 0.9rem;">🆘 Phương án B — SOS Button</strong>
+                <button class="btn btn-secondary" style="justify-content: flex-start;" onclick="jumpToUseCase('B', 1)">1. Học viên chuẩn bị gửi ticket SOS ẩn danh</button>
+                <button class="btn btn-secondary" style="justify-content: flex-start;" onclick="jumpToUseCase('B', 2)">2. Ticket đã gửi, đang chờ Trợ giảng phản hồi (không chặn màn hình)</button>
+                <button class="btn btn-secondary" style="justify-content: flex-start;" onclick="jumpToUseCase('B', 3)">3. Trợ giảng đã phản hồi, học viên nhắn hỏi lại thêm</button>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                <strong style="color: var(--accent-color); font-size: 0.9rem;">⚡ Phương án C — AI In-line Debugger</strong>
+                <button class="btn btn-secondary" style="justify-content: flex-start;" onclick="jumpToUseCase('C', 1)">1. Prompt lỗi ban đầu, chưa có gợi ý nào</button>
+                <button class="btn btn-secondary" style="justify-content: flex-start;" onclick="jumpToUseCase('C', 2)">2. AI Co-pilot hiển thị gợi ý sửa lỗi ngay tại chỗ</button>
+                <button class="btn btn-secondary" style="justify-content: flex-start;" onclick="jumpToUseCase('C', 3)">3. Học viên áp dụng gợi ý, kết quả thành công</button>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="showOverlay('usecase-modal', false)">Đóng</button>
+            </div>
         </div>
     </div>
 
@@ -68,7 +106,7 @@
 
             <!-- Option A Scenario Badge -->
             <div class="scenario-badge opt-a-only">
-                <strong>Kịch bản thử nghiệm Option A:</strong> Hãy nhấn nút <strong>Chạy thử nghiệm</strong> để mô phỏng hành vi loay hoay lỗi. Chờ 3 giây, hệ thống AI Radar phòng Lab sẽ tự động kích hoạt đề xuất hỗ trợ từ Trợ giảng.
+                <strong>Kịch bản thử nghiệm Option A:</strong> Hãy nhấn nút <strong>Chạy thử nghiệm</strong> để mô phỏng hành vi loay hoay lỗi. Sau lần chạy thử thứ 4 liên tiếp bị lỗi, hệ thống AI Radar phòng Lab sẽ tự động kích hoạt đề xuất hỗ trợ từ Trợ giảng.
             </div>
 
             <!-- Option B Scenario Badge -->
@@ -266,16 +304,18 @@
             </div>
             <div class="screenshare-body">
                 <div class="screenshare-icon">🖥️</div>
-                <div class="screenshare-indicator">ĐANG CHIA SẺ MÀN HÌNH VÀ CO-PROMPTING</div>
+                <div class="screenshare-indicator">PHIÊN GỢI MỞ TƯ DUY (SOCRATIC COACHING)</div>
                 <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0; line-height: 1.5;">
-                    Trợ giảng <strong>Phạm Minh Đức</strong> đang tham gia chỉnh sửa prompt trực tiếp cùng bạn.<br>
-                    Mọi thay đổi trên màn hình sẽ đồng bộ thời gian thực.
+                    Trợ giảng <strong>Phạm Minh Đức</strong> đang xem màn hình và đặt câu hỏi gợi mở để bạn tự tìm ra hướng sửa.<br>
+                    Trợ giảng sẽ không đưa đáp án trực tiếp, mà dẫn dắt bạn suy luận từng bước.
                 </p>
                 <div style="background-color: rgba(255,255,255,0.03); width: 100%; text-align: left; padding: 0.8rem; border-radius: 6px; border: 1px solid var(--border-color);">
                     <strong style="font-size: 0.82rem; color: var(--accent-color);">Nhật ký hỗ trợ phòng Lab:</strong>
                     <div style="font-size: 0.78rem; margin-top: 0.3rem; font-family: monospace; color: var(--text-secondary);">
                         [15:42:01] Trợ giảng tham gia.<br>
-                        [15:42:15] Trợ giảng gợi ý bổ sung định dạng JSON mẫu vào Prompt.
+                        [15:42:12] Trợ giảng hỏi: "Model đang trả lời bằng câu văn tự do. Theo bạn, model có biết chính xác nó cần trả về đúng cấu trúc gì không?"<br>
+                        [15:42:30] Trợ giảng hỏi tiếp: "Prompt hiện tại đã mô tả rõ định dạng đầu ra mong muốn và tên các trường cần có chưa?"<br>
+                        [15:42:48] Trợ giảng gợi mở: "Thử bổ sung phần mô tả định dạng đầu ra vào prompt rồi chạy lại xem kết quả thay đổi thế nào."
                     </div>
                 </div>
             </div>
@@ -289,38 +329,36 @@
     <div class="overlay opt-b-only" id="sos-modal">
         <div class="modal-card">
             <div class="modal-header">
-                <span>🆘 Xác nhận gửi tín hiệu SOS phòng Lab</span>
+                <span>🆘 Gửi ticket SOS đến Trợ giảng</span>
             </div>
             <p style="font-size: 0.88rem; line-height: 1.5; color: #e0e4f0; margin: 0;">
-                Tín hiệu SOS của bạn sẽ được gửi <strong>ẩn danh</strong> đến danh sách các Trợ giảng đang túc trực.<br><br>
-                Điểm số, mã số học viên và thông tin cá nhân của bạn sẽ được ẩn hoàn toàn để loại bỏ rào cản sợ bị đánh giá năng lực học tập.
+                Ticket của bạn sẽ được gửi <strong>ẩn danh</strong> đến hàng đợi các Trợ giảng đang túc trực. Điểm số, mã số học viên và thông tin cá nhân sẽ được ẩn hoàn toàn.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                <label for="sos-message" style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 700;">Nhắn gì đó cho Trợ giảng (không bắt buộc):</label>
+                <textarea id="sos-message" rows="3" placeholder="VD: Mình chỉnh Temperature xong thì Accuracy tụt hẳn, chưa hiểu vì sao..." style="resize: vertical; background: rgba(255,255,255,0.04); border: 1px solid var(--border-color); border-radius: 6px; padding: 0.6rem; color: var(--text-primary); font-family: inherit; font-size: 0.85rem;"></textarea>
+            </div>
+            <p style="font-size: 0.78rem; line-height: 1.4; color: var(--text-secondary); margin: 0;">
+                Sau khi gửi, bạn không cần chờ tại đây — cứ tiếp tục làm bài, hệ thống sẽ báo ngay khi Trợ giảng phản hồi.
             </p>
             <div class="modal-actions">
                 <button class="btn btn-secondary" onclick="showOverlay('sos-modal', false)">Hủy</button>
-                <button class="btn btn-danger" onclick="confirmSOS()">Gửi SOS ẩn danh</button>
+                <button class="btn btn-danger" onclick="confirmSOS()">🎫 Gửi ticket ẩn danh</button>
             </div>
         </div>
     </div>
 
-    <!-- State 3 Overlay: Active SOS Session (Queue View - Option B) -->
-    <div class="overlay opt-b-only" id="sos-active-overlay">
-        <div class="modal-card" style="width: 440px; text-align: center;">
-            <div class="modal-header danger" style="justify-content: center; font-size: 1.2rem; letter-spacing: 0.5px;">
-                🚨 TÍN HIỆU SOS ĐANG HOẠT ĐỘNG
-            </div>
-            <div style="padding: 1rem 0; display: flex; flex-direction: column; gap: 0.8rem;">
-                <div style="font-size: 1rem; color: var(--warning-color);">Bạn đang ở vị trí: <strong>Hàng đợi thứ #2</strong></div>
-                <div class="progress-bar-bg" style="height: 10px; width: 60%; margin: 0 auto;">
-                    <div class="progress-bar-fill" style="background: linear-gradient(90deg, #ff4a5a, #f59e0b); width: 66%; animation: pulse 1.5s infinite;"></div>
-                </div>
-                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin: 0.5rem 0 0 0;">
-                    Trợ giảng phòng Lab đã nhận tín hiệu ẩn danh.<br>
-                    Hệ thống sẽ tự động ghép nối trực tiếp sau khoảng 1 phút nữa.
-                </p>
-            </div>
-            <div class="modal-actions" style="justify-content: center;">
-                <button class="btn btn-secondary" onclick="cancelSOS()" style="border-color: var(--error-color); color: var(--error-color);">❌ Hủy yêu cầu SOS (Tự giải quyết)</button>
-            </div>
+    <!-- Non-blocking SOS Ticket Widget (Option B) -->
+    <div class="chat-widget opt-b-only" id="sos-ticket-widget">
+        <div class="chat-title">
+            <span>🎫 Ticket hỗ trợ SOS</span>
+            <span class="status-dot" id="sos-status-dot"></span>
+        </div>
+        <div class="chat-body" id="sos-ticket-body">
+            Đang chờ gửi ticket...
+        </div>
+        <div class="chat-footer" id="sos-ticket-footer">
+            <button class="btn btn-secondary" onclick="hideSOSTicket()">Thu gọn</button>
         </div>
     </div>
 

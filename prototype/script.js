@@ -41,6 +41,8 @@ function switchTab(tabId) {
 
 // Simulated Evaluation Run
 let isPromptOptimized = false;
+let radarRunAttempts = 0;
+const RADAR_TRIGGER_THRESHOLD = 4;
 
 function runEvaluation() {
     const consoleOutput = document.getElementById('console-output');
@@ -76,6 +78,14 @@ function runEvaluation() {
             }
             updateStateIndicator("State 1: Silent Struggle");
 
+            // Option A: after 4 failed run attempts, the AI Radar auto-triggers
+            if (currentOption === 'A') {
+                radarRunAttempts++;
+                if (radarRunAttempts >= RADAR_TRIGGER_THRESHOLD) {
+                    startRadarTimer();
+                }
+            }
+
             // Option C: Trigger inline suggestion box when running error prompt
             if (currentOption === 'C') {
                 const inlineHint = document.getElementById('inline-hint');
@@ -100,16 +110,19 @@ function triggerRadarChat() {
 function acceptTAHelp() {
     showOverlay('ta-overlay', true);
     document.getElementById('radar-chat')?.classList.remove('active');
+    radarRunAttempts = 0;
     updateStateIndicator("State 3: TA Connected");
 }
 
 function declineTAHelp() {
     document.getElementById('radar-chat')?.classList.remove('active');
+    radarRunAttempts = 0;
     updateStateIndicator("State 3: TA Help Declined");
 }
 
 function disconnectTA() {
     showOverlay('ta-overlay', false);
+    radarRunAttempts = 0;
     updateStateIndicator("State 1: Silent Struggle");
 }
 
@@ -119,14 +132,153 @@ function triggerSOSModal() {
     updateStateIndicator("State 2: SOS Confirmation");
 }
 
-function confirmSOS() {
-    showOverlay('sos-modal', false);
-    showOverlay('sos-active-overlay', true);
-    updateStateIndicator("State 3: SOS Queue Active");
+let sosTicketTimer = null;
+
+// Escapes text before inserting it into innerHTML, since these messages come from user input
+function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
 }
 
-function cancelSOS() {
-    showOverlay('sos-active-overlay', false);
+function confirmSOS() {
+    const messageInput = document.getElementById('sos-message');
+    const message = escapeHtml((messageInput?.value || '').trim() || 'Mình đang gặp lỗi nhưng chưa rõ nguyên nhân, cần Trợ giảng hỗ trợ.');
+
+    showOverlay('sos-modal', false);
+
+    const ticketBody = document.getElementById('sos-ticket-body');
+    const ticketFooter = document.getElementById('sos-ticket-footer');
+    const statusDot = document.getElementById('sos-status-dot');
+
+    if (ticketBody) {
+        ticketBody.innerHTML = `
+            🎫 Ticket <strong>#SOS-482</strong> đã gửi ẩn danh đến hàng đợi Trợ giảng.<br><br>
+            <em>Nội dung của bạn:</em> "${message}"<br><br>
+            ⏳ Đang chờ Trợ giảng tiếp nhận... Bạn cứ tiếp tục làm bài, hệ thống sẽ báo ngay khi có phản hồi.
+        `;
+    }
+    if (statusDot) statusDot.style.backgroundColor = 'var(--warning-color)';
+    if (ticketFooter) {
+        ticketFooter.innerHTML = `<button class="btn btn-secondary" onclick="hideSOSTicket()">Thu gọn</button>`;
+    }
+
+    const ticketWidget = document.getElementById('sos-ticket-widget');
+    if (ticketWidget) ticketWidget.classList.add('active');
+
+    updateStateIndicator("State 2: SOS Ticket Sent");
+
+    if (sosTicketTimer) clearTimeout(sosTicketTimer);
+    sosTicketTimer = setTimeout(deliverSOSFeedback, 5000);
+}
+
+// Mock TA resolving the ticket in the background — fires even if the widget was minimized
+function deliverSOSFeedback() {
+    const ticketBody = document.getElementById('sos-ticket-body');
+    const ticketFooter = document.getElementById('sos-ticket-footer');
+    const statusDot = document.getElementById('sos-status-dot');
+
+    if (ticketBody) {
+        ticketBody.innerHTML = `
+            <strong style="color: var(--success-color);">✅ Trợ giảng Nguyễn Hải Nam đã phản hồi:</strong><br><br>
+            "Mình thấy Accuracy tụt sau khi bạn tăng Temperature. Thử hạ Temperature về khoảng 0.2–0.4 để model trả lời ổn định và bám sát định dạng JSON hơn, rồi chạy lại thử nghiệm xem sao nhé."
+        `;
+    }
+    if (statusDot) statusDot.style.backgroundColor = 'var(--success-color)';
+    if (ticketFooter) {
+        ticketFooter.innerHTML = `
+            <button class="btn btn-secondary" onclick="requestMoreHelp()">🤔 Em vẫn chưa hiểu lắm</button>
+            <button class="btn btn-primary" onclick="hideSOSTicket()">Cảm ơn, đã rõ</button>
+        `;
+    }
+
+    const ticketWidget = document.getElementById('sos-ticket-widget');
+    if (ticketWidget) ticketWidget.classList.add('active');
+
+    updateStateIndicator("State 3: SOS Feedback Received");
+}
+
+// Learner asks the TA to clarify further — opens a reply composer instead of a fixed message
+function requestMoreHelp() {
+    const ticketFooter = document.getElementById('sos-ticket-footer');
+    if (ticketFooter) {
+        ticketFooter.innerHTML = `
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%;">
+                <textarea id="sos-followup-message" rows="2" placeholder="Nhắn thêm cho Trợ giảng, ví dụ: mình chưa hiểu vì sao Temperature lại ảnh hưởng đến JSON..." style="resize: vertical; background: rgba(255,255,255,0.04); border: 1px solid var(--border-color); border-radius: 6px; padding: 0.5rem; color: var(--text-primary); font-family: inherit; font-size: 0.8rem;"></textarea>
+                <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                    <button class="btn btn-secondary" onclick="cancelFollowUpMessage()">Hủy</button>
+                    <button class="btn btn-primary" onclick="sendFollowUpMessage()">Gửi</button>
+                </div>
+            </div>
+        `;
+    }
+    document.getElementById('sos-followup-message')?.focus();
+    updateStateIndicator("State 3: Composing Follow-up Message");
+}
+
+function cancelFollowUpMessage() {
+    const ticketFooter = document.getElementById('sos-ticket-footer');
+    if (ticketFooter) {
+        ticketFooter.innerHTML = `
+            <button class="btn btn-secondary" onclick="requestMoreHelp()">🤔 Em vẫn chưa hiểu lắm</button>
+            <button class="btn btn-primary" onclick="hideSOSTicket()">Cảm ơn, đã rõ</button>
+        `;
+    }
+    updateStateIndicator("State 3: SOS Feedback Received");
+}
+
+function sendFollowUpMessage() {
+    const input = document.getElementById('sos-followup-message');
+    const message = escapeHtml((input?.value || '').trim() || 'Em vẫn chưa hiểu lắm ạ.');
+
+    const ticketBody = document.getElementById('sos-ticket-body');
+    const ticketFooter = document.getElementById('sos-ticket-footer');
+    const statusDot = document.getElementById('sos-status-dot');
+
+    if (ticketBody) {
+        ticketBody.innerHTML += `
+            <br><br><em>Bạn:</em> "${message}"<br><br>
+            ⏳ Trợ giảng đang soạn giải thích chi tiết hơn cho bạn...
+        `;
+    }
+    if (statusDot) statusDot.style.backgroundColor = 'var(--warning-color)';
+    if (ticketFooter) {
+        ticketFooter.innerHTML = `<button class="btn btn-secondary" onclick="hideSOSTicket()">Thu gọn</button>`;
+    }
+
+    if (sosTicketTimer) clearTimeout(sosTicketTimer);
+    sosTicketTimer = setTimeout(deliverSOSFollowUp, 5000);
+
+    updateStateIndicator("State 3: Waiting for TA Clarification");
+}
+
+function deliverSOSFollowUp() {
+    const ticketBody = document.getElementById('sos-ticket-body');
+    const ticketFooter = document.getElementById('sos-ticket-footer');
+    const statusDot = document.getElementById('sos-status-dot');
+
+    if (ticketBody) {
+        ticketBody.innerHTML += `
+            <br><br><strong style="color: var(--success-color);">✅ Trợ giảng Nguyễn Hải Nam giải thích thêm:</strong><br><br>
+            "Temperature càng cao thì model càng 'sáng tạo' và dễ lệch khỏi cấu trúc JSON đã yêu cầu. Bạn thử đặt Temperature = 0.3, giữ nguyên phần mô tả định dạng JSON trong prompt, rồi nhấn Chạy thử nghiệm lại để so sánh Accuracy trước/sau nhé."
+        `;
+    }
+    if (statusDot) statusDot.style.backgroundColor = 'var(--success-color)';
+    if (ticketFooter) {
+        ticketFooter.innerHTML = `
+            <button class="btn btn-secondary" onclick="requestMoreHelp()">🤔 Em vẫn chưa hiểu lắm</button>
+            <button class="btn btn-primary" onclick="hideSOSTicket()">Cảm ơn, đã rõ</button>
+        `;
+    }
+
+    const ticketWidget = document.getElementById('sos-ticket-widget');
+    if (ticketWidget) ticketWidget.classList.add('active');
+
+    updateStateIndicator("State 3: SOS Feedback Received");
+}
+
+function hideSOSTicket() {
+    document.getElementById('sos-ticket-widget')?.classList.remove('active');
     updateStateIndicator("State 1: Silent Struggle");
 }
 
@@ -393,11 +545,16 @@ function switchOption(opt) {
     
     const chatWidget = document.getElementById('radar-chat');
     if (chatWidget) chatWidget.classList.remove('active');
-    
+
+    const ticketWidget = document.getElementById('sos-ticket-widget');
+    if (ticketWidget) ticketWidget.classList.remove('active');
+    if (sosTicketTimer) clearTimeout(sosTicketTimer);
+
     const inlineHint = document.getElementById('inline-hint');
     if (inlineHint) inlineHint.style.display = 'none';
 
     if (radarTimer) clearTimeout(radarTimer);
+    radarRunAttempts = 0;
 
     if (opt === 'C') {
         resetOptionC();
@@ -421,9 +578,46 @@ function switchOption(opt) {
         }
         updateStateIndicator("State 1: Silent Struggle");
     }
+}
+
+// Use Case Shortcuts: jump straight to a target scenario instead of testing manually
+function openUseCaseModal() {
+    showOverlay('usecase-modal', true);
+}
+
+function jumpToUseCase(opt, caseId) {
+    showOverlay('usecase-modal', false);
+    switchOption(opt); // resets to that option's clean State 1 first
 
     if (opt === 'A') {
-        startRadarTimer();
+        if (caseId === 2) {
+            triggerRadarChat();
+        } else if (caseId === 3) {
+            acceptTAHelp();
+        }
+        // caseId 1: default Silent Struggle state from switchOption, nothing more to do
+    } else if (opt === 'B') {
+        if (caseId === 1) {
+            triggerSOSModal();
+        } else if (caseId === 2) {
+            confirmSOS();
+        } else if (caseId === 3) {
+            confirmSOS();
+            deliverSOSFeedback();
+            requestMoreHelp();
+            if (sosTicketTimer) clearTimeout(sosTicketTimer); // skip the pending timers we just fast-forwarded through
+        }
+    } else if (opt === 'C') {
+        if (caseId === 2) {
+            const inlineHint = document.getElementById('inline-hint');
+            if (inlineHint) {
+                inlineHint.style.display = 'flex';
+                updateStateIndicator("State 2: AI Suggestion Displayed");
+            }
+        } else if (caseId === 3) {
+            applyHint();
+        }
+        // caseId 1: default error state from switchOption, nothing more to do
     }
 }
 
@@ -436,7 +630,6 @@ window.onload = () => {
         // Standalone page context
         if (document.getElementById('radar-chat')) {
             currentOption = 'A';
-            startRadarTimer();
         } else if (document.getElementById('sos-modal')) {
             currentOption = 'B';
         } else if (document.getElementById('inline-hint')) {

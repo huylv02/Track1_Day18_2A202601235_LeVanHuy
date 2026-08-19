@@ -1,9 +1,14 @@
 # Track1_Day18_2A202601235_LeVanHuy
 
-## 1. Thông tin cá nhân
-- **MHV:** 2A202601235
-- **Họ tên:** Lê Văn Huy
+## 1. Thông tin nhóm
 - **Case:** Case C — AI Support Radar
+- **Thành viên:**
+
+| MSSV | Họ tên | Giai đoạn phụ trách |
+|---|---|---|
+| 2A202601235 | Lê Văn Huy | Hypothesis & Research |
+| 2A202601955 | Nguyễn Quang Minh | Thiết kế & Xây dựng Prototype |
+| 2A202601609 | Nguyễn Minh Hoàng | Testing & Tổng hợp Feedback |
 
 ## 2. Hypothesis Problem
 - **Problem Statement:** Khi thực hành các bài học kỹ thuật phức tạp về AI và Lập trình (Situation), Trợ giảng gặp khó khăn trong việc nhận diện học viên đang bị kẹt và Learner gặp rào cản trong việc chủ động yêu cầu trợ giúp (Barrier), dẫn đến việc học viên mất nhiều thời gian tự xoay sở vô ích và Trợ giảng can thiệp quá muộn khi học viên đã nản lòng hoặc bỏ cuộc (Consequence).
@@ -15,11 +20,19 @@
 - **Option B (SOS Button):** Nút SOS ẩn danh nổi bật trên thanh công cụ để Learner gửi tín hiệu cứu trợ ẩn danh đến Trợ giảng phòng Lab mà không sợ bị đánh giá năng lực.
 - **Option C (AI In-line Debugger):** Trình gỡ lỗi prompt tích hợp trực tiếp, phát hiện lỗi định dạng đầu ra (ví dụ: thiếu định dạng JSON) hoặc prompt không hiệu quả và chủ động đưa ra gợi ý sửa lỗi ngay trong trình soạn thảo cho Learner.
 
-## 4. Đóng góp cá nhân
-- **Thực hiện:** Tôi thực hiện toàn bộ quy trình thiết kế, lập trình và thử nghiệm cá nhân (nhóm 1 mình).
-- **Nghiên cứu & Thiết kế:** Phát triển 3 giải pháp tương tác (Radar, SOS, Co-pilot) xung quanh chủ đề thực hành Prompt Engineering, thiết kế giao diện đa trang (Tab Workspace & Tab Analytics) để tạo trải nghiệm chân thực.
-- **Xây dựng:** Dựng bản mẫu Unified Prototype hoàn chỉnh (gộp 3 phương án Radar, SOS, Co-pilot) bằng HTML, CSS và JavaScript thuần túy, đặt trong thư mục `prototype/`.
-- **Thử nghiệm:** Tiến hành kiểm thử trực tiếp với 3 tester ngoài dự án, ghi nhận chi tiết phản hồi về trải nghiệm người dùng và tổng hợp dữ liệu (Chi tiết trong `prototype/prototype-feedback-note.md`).
+## 4. Phân chia công việc
+
+### 4.1. Nguyễn Quang Minh (2A202601955) — Hypothesis & Research
+- Xây dựng Problem Statement, thu thập evidence ban đầu và xác định các điểm chưa được chứng minh (mục 2).
+- Nghiên cứu và đề xuất khung 3 giải pháp tương tác (Radar, SOS, Co-pilot) xung quanh chủ đề thực hành Prompt Engineering (mục 3).
+
+### 4.2. Lê Văn Huy (2A202601235) — Thiết kế & Xây dựng Prototype
+- Thiết kế giao diện đa trang (Tab Workspace & Tab Analytics) để tạo trải nghiệm chân thực.
+- Dựng bản mẫu Unified Prototype hoàn chỉnh (gộp 3 phương án Radar, SOS, Co-pilot) bằng HTML, CSS và JavaScript thuần túy, đặt trong thư mục `prototype/`.
+
+### 4.3. Nguyễn Minh Hoàng (2A202601609) — Testing & Tổng hợp Feedback
+- Tiến hành kiểm thử trực tiếp với 3 tester ngoài dự án, ghi nhận chi tiết phản hồi về trải nghiệm người dùng.
+- Tổng hợp dữ liệu, rút ra pattern chung và đề xuất Next Change (Chi tiết trong `prototype/prototype-feedback-note.md`).
 
 ## 5. Prototype Feedback
 - **Observations:** 
@@ -39,4 +52,4 @@
 ## 6. AI Support Log
 - **AI đã giúp gì:** Hỗ trợ cấu trúc tài liệu thiết kế, gợi ý phương án xây dựng các chỉ số đánh giá độ chính xác của prompt (Accuracy, Latency, Token Cost) để đưa vào tab Dashboard của prototype.
 - **AI sai/hời hợt:** Gợi ý các kịch bản HTML/JS quá phức tạp, sử dụng các thư viện ngoài không cần thiết.
-- **Tôi đã tự sửa:** Tự tay viết lại toàn bộ giao diện bằng Vanilla CSS và JS thuần túy, tối ưu hóa thành giao diện 2 trang (2 Tabs: Workspace và Evaluation Analytics) trực quan, gọn nhẹ và hoạt động mượt mà.
+- **Nhóm đã tự sửa:** Tự tay viết lại toàn bộ giao diện bằng Vanilla CSS và JS thuần túy, tối ưu hóa thành giao diện 2 trang (2 Tabs: Workspace và Evaluation Analytics) trực quan, gọn nhẹ và hoạt động mượt mà.
