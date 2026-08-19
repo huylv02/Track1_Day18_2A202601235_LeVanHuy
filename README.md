@@ -6,8 +6,8 @@
 
 | MSSV | Họ tên | Giai đoạn phụ trách |
 |---|---|---|
-| 2A202601235 | Lê Văn Huy | Hypothesis & Research |
-| 2A202601955 | Nguyễn Quang Minh | Thiết kế & Xây dựng Prototype |
+| 2A202601955 | Nguyễn Quang Minh | Hypothesis & Research |
+| 2A202601235 | Lê Văn Huy | Thiết kế & Xây dựng Prototype |
 | 2A202601609 | Nguyễn Minh Hoàng | Testing & Tổng hợp Feedback |
 
 ## 2. Hypothesis Problem
@@ -50,6 +50,15 @@
   - Làm cách nào để tối ưu hóa thuật toán AI Radar nhằm phân biệt chính xác giữa học viên đang tư duy sâu (dừng lâu) với học viên thực sự bị kẹt (bế tắc hoàn toàn)?
 
 ## 6. AI Support Log
-- **AI đã giúp gì:** Hỗ trợ cấu trúc tài liệu thiết kế, gợi ý phương án xây dựng các chỉ số đánh giá độ chính xác của prompt (Accuracy, Latency, Token Cost) để đưa vào tab Dashboard của prototype.
-- **AI sai/hời hợt:** Gợi ý các kịch bản HTML/JS quá phức tạp, sử dụng các thư viện ngoài không cần thiết.
-- **Nhóm đã tự sửa:** Tự tay viết lại toàn bộ giao diện bằng Vanilla CSS và JS thuần túy, tối ưu hóa thành giao diện 2 trang (2 Tabs: Workspace và Evaluation Analytics) trực quan, gọn nhẹ và hoạt động mượt mà.
+Dưới đây là tóm tắt kinh nghiệm sử dụng AI hỗ trợ của các thành viên trong nhóm. Chi tiết nhật ký đầy đủ được lưu trữ tại file [ai-support-log.md](ai-support-log.md).
+
+### 6.1. Nguyễn Quang Minh (Hypothesis & Research)
+- **AI giúp đỡ:** Chuẩn hóa dữ liệu feedback thô của các tester thành dạng bảng biểu có cấu trúc và tổng hợp pattern chung giữa họ.
+- **AI hạn chế:** Tự ý suy đoán chủ quan về phương án tester lựa chọn và viết nội dung phân tích mang tính khuôn mẫu.
+- **Tự điều chỉnh:** Kiểm tra thủ công và điều chỉnh lại toàn bộ suy đoán của AI để đảm bảo tính xác thực với ý kiến gốc của tester.
+
+### 6.2. Lê Văn Huy (Thiết kế & Xây dựng Prototype)
+- **AI giúp đỡ:** AI hỗ trợ tư vấn các nguyên lý thiết kế giao diện (UI) và đề xuất các chỉ số đo lường hiệu năng quan trọng (Accuracy, Latency, Token Cost) để người dùng có cái nhìn tổng quan về hệ thống. AI cũng giúp định hình luồng tương tác cơ bản cho các phương án hỗ trợ người dùng trong môi trường Lab.
+- **AI hạn chế:** AI thường đề xuất các phương án tiếp cận theo khuôn mẫu, áp đặt một cơ chế phản hồi đồng nhất (ví dụ: dùng chung một cách hiển thị cảnh báo), làm lu mờ sự khác biệt cần thiết giữa các cơ chế hỗ trợ (SOS ẩn danh vs. cảnh báo từ Radar).
+- **Tự điều chỉnh:** Điều chỉnh lại luồng trải nghiệm (UX flow) để tạo sự tách biệt rõ rệt giữa tính năng "tự chủ động" (SOS) và "được hỗ trợ" (Radar). Ưu tiên thiết kế sao cho học viên cảm thấy quyền kiểm soát nằm trong tay họ; tập trung vào sự tinh gọn để giữ môi trường học tập không bị gây nhiễu.
+
