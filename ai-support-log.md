@@ -28,15 +28,15 @@ Tôi cũng sẽ tự rà soát và xác nhận lại cột "Option được ch�
 * **Tôi đã tự sửa hoặc quyết định lại điều gì?**
   Tôi quyết định điều chỉnh lại luồng trải nghiệm (UX flow) để tạo sự tách biệt rõ rệt giữa tính năng "tự chủ động" (SOS) và tính năng "được hỗ trợ từ hệ thống" (Radar). Tôi ưu tiên thiết kế các điểm chạm (touchpoints) sao cho học viên cảm thấy quyền kiểm soát nằm trong tay họ, thay vì để hệ thống can thiệp một cách quá chủ động. Tôi đã đưa ra các quyết định thiết kế tập trung vào sự tinh gọn, nhằm giữ cho môi trường học tập không bị gây nhiễu bởi các thông báo không cần thiết.
 
-## 3. Thành viên: Nguyễn Minh Hoàng (Thiết kế & Kiểm thử Prototype)
+---
 
-**Thành viên:** Nguyễn Minh Hoàng
+## 3. Thành viên: Nguyễn Minh Hoàng (Testing & Tổng hợp Feedback)
 
 **AI đã giúp tôi ở đâu?**
-AI giúp tôi nhìn rõ hơn những vấn đề mà Learner có thể gặp khi thực hành Prompt Engineering. Từ đó, tôi tham khảo và phát triển ba hướng hỗ trợ chính là AI Support Radar, SOS Button và AI In-line Debugger. AI cũng hỗ trợ tôi lên ý tưởng về cách người dùng tương tác với các chức năng này và những chỉ số cần có trên màn hình Analytics.
+AI hỗ trợ tôi xây dựng kịch bản kiểm thử trải nghiệm người dùng, xác định các tiêu chí cần quan sát và sắp xếp phản hồi của tester theo từng phương án A, B và C. AI cũng giúp tôi tổng hợp các ý kiến riêng lẻ thành những điểm chung, từ đó đưa ra nhận định và đề xuất cải tiến cho prototype.
 
 **AI sai, hời hợt hoặc đưa ra đề xuất chưa phù hợp ở đâu?**
-Ở một số phần, AI đề xuất cách làm HTML/JavaScript khá phức tạp, trong khi prototype của tôi chỉ cần ở mức đơn giản để demo ý tưởng. Ngoài ra, AI chưa đề cập đủ đến vấn đề quyền riêng tư, việc cần xác nhận trước khi Trợ giảng kết nối và trường hợp người dùng muốn hủy yêu cầu SOS.
+AI đôi khi suy diễn lựa chọn của tester dựa trên cách diễn đạt thay vì hoàn toàn dựa vào câu trả lời thực tế. Một số nhận xét tổng hợp còn khá chung chung và chưa phân biệt rõ phản hồi của Learner với phản hồi của Trợ giảng. Vì vậy, tôi cần đối chiếu lại với ghi chép và kết quả kiểm thử thực tế.
 
 **Tôi đã tự sửa hoặc quyết định lại điều gì?**
-Tôi chủ động đơn giản hóa phần prototype và tự triển khai bằng HTML, CSS và JavaScript thuần. Tôi bổ sung các lựa chọn như chấp nhận, từ chối, áp dụng, bỏ qua và hủy để người dùng có quyền kiểm soát. Cuối cùng, tôi kết hợp ba phương án thành một luồng hỗ trợ theo ba mức độ, trong đó Learner vẫn là người đưa ra quyết định cuối cùng.
+Tôi tự kiểm tra lại các phản hồi gốc, xác nhận vai trò của từng tester và phân biệt rõ giữa quan sát thực tế với nhận định cá nhân. Tôi cũng điều chỉnh phần tổng hợp để phản ánh đúng ưu điểm của phương án C, nhu cầu riêng của phương án B và rủi ro tạo cảm giác bị giám sát ở phương án A. Từ đó, tôi đề xuất một luồng hỗ trợ ba tầng phù hợp và thực tế hơn.
