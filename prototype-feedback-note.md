@@ -37,10 +37,10 @@
   - *Hành vi:* Thử tính năng gạch chân cảnh báo lỗi và bấm "Áp dụng" để xem AI tự sửa lỗi ngay, không qua bước giải thích hay kiểm tra lại kiến thức.
   - *Nhận xét:* Nên bổ sung thêm các quiz câu hỏi để giúp người dùng có thể nhớ lại kiến thức thay vì đưa ra kết quả luôn.
 
-### Tester 3: Trần Thị Mai 
+### Tester 3: Lê Ngọc Khánh - 2A202601487
 * **Nhận xét tổng thể:**  
-  - Với người mới như em, Option C (AI In-line Debugger) là ok nhất vì hầu hết các lỗi em gặp chỉ là viết sai tên thuộc tính JSON hoặc thiếu dấu ngoặc. Tuy nhiên, nếu gặp lỗi thiết kế logic prompt (ví dụ: prompt bị bias), em rất cần Option B để gọi anh TA cứu trợ."
-  - "Option A em cảm thấy hơi áp lực một chút, giống như có người đang đứng sau lưng giám sát mình làm bài vậy. Em thích tự giải quyết trước."
+  - Với người mới như em, Option C (AI In-line Debugger) là ok nhất vì hầu hết các lỗi em gặp chỉ là viết sai tên thuộc tính JSON hoặc thiếu dấu ngoặc. Tuy nhiên, nếu gặp lỗi thiết kế logic prompt (ví dụ: prompt bị bias), em rất cần Option B để gọi anh TA cứu trợ.
+  - Option A em cảm thấy hơi áp lực một chút, giống như có người đang đứng sau lưng giám sát mình làm bài vậy. Em thích tự giải quyết trước hơn.
 
 ---
 
